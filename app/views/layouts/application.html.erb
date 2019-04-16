@@ -12,7 +12,7 @@
   <body>
 
   <!-- Nav Bar-->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
   <%= link_to "omrails", root_path, class: "navbar-brand" %>
     <ul class="nav navbar-nav">
@@ -25,18 +25,29 @@
       <li class="nav-item">
         <%= link_to "Contact", "#", class: "nav-link" %>
       </li>
+          <% if user_signed_in? %>
+            <li class="nav-item float-md-right"><%= link_to "Log out", signout_path, method: :delete, class: "nav-link" %></li>
+          <% else %>
+            <li class="nav-item float-md-right"><%= link_to "Sign in", signin_path, class: "nav-link" %></li>
+            <li class="nav-item float-md-right"><%= link_to "Sign up", signup_path, class: "btn btn-primary" %></li>
+          <% end %>
+
     </ul>
 
   </div>
 </nav>
 
-<main role="main" class="container">
 
-  <div class="starter-template">
+
+
+
+
+   <!-- Flash Messages -->
+    <% flash.each do |name, message| %>
+      <%= content_tag(:div, message, class: "alert alert-info #{name}") %>
+    <% end %>
         <%= yield %>
-  </div>
 
-</main><!-- /.container -->
 
 
 
@@ -46,7 +57,7 @@
       <div class="container">
         <hr>
         <center>
-          <p>© 2016 One Month</p>
+          <p>© 2019 One Month</p>
         </center>
       </div>
     </footer>
