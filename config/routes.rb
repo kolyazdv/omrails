@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/:username', to: 'users#show', as: 'user'
   resources :items
   resources :tweets
   ActiveAdmin.routes(self)
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   root 'pages#home'
-  get 'about' => 'pages#about'
+  get 'about', to: 'pages#about'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
